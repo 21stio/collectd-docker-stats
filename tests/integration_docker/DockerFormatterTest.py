@@ -22,8 +22,12 @@ class DockerFormatterTest(unittest.TestCase):
 
         processed_stats = self.cls.dockerFormatter.process_stats(container_names, stats)
 
+        self.assertTrue('memory_stats.limit' in processed_stats['all'])
+
+        print processed_stats
+
+        del(processed_stats['all'])
         random_container_name = container_names.values()[0]
 
-        self.assertTrue('memory_stats.limit' in processed_stats['all'])
         self.assertTrue('memory_stats.limit' not in processed_stats[random_container_name])
         self.assertTrue('memory_stats.usage' in processed_stats[random_container_name])

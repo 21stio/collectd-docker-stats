@@ -1,14 +1,15 @@
 import ContainerStatsStream
 
-class ContainerStatsStreamPool:
 
+class ContainerStatsStreamPool:
     def __init__(self, dockerClient):
         self.dockerClient = dockerClient
         self.container_stats_streams = {}
 
     def get_ContainerStatsStream(self, container_id):
         if container_id not in self.container_stats_streams:
-            self.container_stats_streams[container_id] = ContainerStatsStream.ContainerStatsStream(self.dockerClient, container_id)
+            self.container_stats_streams[container_id] = ContainerStatsStream.ContainerStatsStream(self.dockerClient,
+                                                                                                   container_id)
 
         return self.container_stats_streams[container_id]
 

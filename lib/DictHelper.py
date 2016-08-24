@@ -18,7 +18,7 @@ class DictHelper:
                 delete_resolved_key = None
 
                 for resolved_key, resolved_value in resolved.iteritems():
-                    if type(resolved_value) is str:
+                    if type(resolved_value) is unicode:
                         append_key = resolved_value
                         delete_resolved_key = resolved_key
 

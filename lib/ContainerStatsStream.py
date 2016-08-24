@@ -2,8 +2,8 @@ import threading
 import json
 import time
 
-class ContainerStatsStream(threading.Thread):
 
+class ContainerStatsStream(threading.Thread):
     def __init__(self, dockerClient, container_id):
         threading.Thread.__init__(self)
         self.daemon = True
@@ -44,5 +44,5 @@ class ContainerStatsStream(threading.Thread):
 
         if self._stats:
             return json.loads(self._stats)
-        return {}
 
+        return {}

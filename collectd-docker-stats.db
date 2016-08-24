@@ -1,0 +1,5 @@
+memory_stats            value:GAUGE:0:U
+pids_stats              value:GAUGE:0:U
+blkio_stats             value:GAUGE:0:U
+cpu_stats               value:GAUGE:0:U
+network                 value:GAUGE:0:U

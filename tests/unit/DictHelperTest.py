@@ -56,12 +56,12 @@ class DictHelperTest(unittest.TestCase):
                 {
                     "second_1": 1,
                     "second_2": 2,
-                    "second_3": "first"
+                    "second_3": u"first"
                 },
                 {
                     "second_1": 1,
                     "second_2": 2,
-                    "second_3": "second"
+                    "second_3": u"second"
                 }
             ]
         }

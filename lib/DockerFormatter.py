@@ -1,5 +1,4 @@
 class DockerFormatter:
-
     def __init__(self, dictHelper):
         self.dictHelper = dictHelper
 
@@ -20,7 +19,7 @@ class DockerFormatter:
 
     def remove_global_stats(self, stats, global_stats):
         for metric in global_stats.keys():
-            del(stats[metric])
+            del (stats[metric])
 
         return stats
 
@@ -33,7 +32,7 @@ class DockerFormatter:
         ids = []
 
         for container in containers:
-          ids.append(self.get_container_id(container))
+            ids.append(self.get_container_id(container))
 
         return ids
 
@@ -92,7 +91,7 @@ class DockerFormatter:
 
         resolved_stats = {}
         for container_name, container_stats in named_stats.iteritems():
-            container_stats['cpu_stats']['percentage'] =  self.calculate_cpu_percentage(container_stats)
+            container_stats['cpu_stats']['percentage'] = self.calculate_cpu_percentage(container_stats)
             container_stats['memory_stats']['percentage'] = self.calculate_memory_percentage(container_stats)
 
             resolved_stats[container_name] = self.get_resolved_stats(container_stats)
