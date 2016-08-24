@@ -40,6 +40,8 @@ class DependencyResolver:
             if StrictVersion(daemon_version) < StrictVersion(self.min_api_version):
                 raise Exception('Docker daemon at {0} does not support container statistics!'.format(self.socket_url))
 
+        print "started docker-py client socket_url: {0} version: {1}".format(self.socket_url, self.min_api_version)
+
         return self.dockerClient
 
     def get_ContainerStatsStreamPool(self):

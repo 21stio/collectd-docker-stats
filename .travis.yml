@@ -1,9 +1,8 @@
+sudo: required
+language: generic
+
 env:
   DOCKER_COMPOSE_VERSION: 1.8
-
-sudo: required
-
-language: generic
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose

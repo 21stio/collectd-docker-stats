@@ -11,6 +11,8 @@ class ContainerStatsStreamPool:
         if container_name not in self.container_stats_streams:
             self.container_stats_streams[container_name] = ContainerStatsStream.ContainerStatsStream(self.dockerClient, container_name)
 
+            print "started monitoring container: {0}".format(container_name)
+
         return self.container_stats_streams[container_name]
 
     def keep_streams_running(self, keep_container_names):
@@ -22,3 +24,5 @@ class ContainerStatsStreamPool:
 
         for container_name in terminated_ids:
             self.container_stats_streams[container_name].running = False
+
+            print "stopped monitoring container: {0}".format(container_name)
