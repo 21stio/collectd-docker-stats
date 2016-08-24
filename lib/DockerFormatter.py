@@ -1,4 +1,5 @@
 class DockerFormatter:
+
     def __init__(self, dictHelper):
         self.dictHelper = dictHelper
 
@@ -10,9 +11,6 @@ class DockerFormatter:
             if len(split) == 2:
                 return split[1]
         raise Exception('can not find valid container name in {names}'.format(names=names))
-
-    def get_container_id(self, container):
-        return container['Id']
 
     def get_resolved_stats(self, stats):
         return self.dictHelper.resolve_dimensions(stats)
@@ -28,20 +26,11 @@ class DockerFormatter:
 
         return self.dictHelper.find_same_value_keys(stats)
 
-    def get_container_ids(self, containers):
-        ids = []
-
-        for container in containers:
-            ids.append(self.get_container_id(container))
-
-        return ids
-
     def get_container_names(self, containers):
-        names = {}
+        names = []
 
         for container in containers:
-            id = self.get_container_id(container)
-            names[id] = self.get_container_name(container)
+            names.append(self.get_container_name(container))
 
         return names
 
@@ -82,15 +71,9 @@ class DockerFormatter:
 
         return 100.0 * usage / limit
 
-    def process_stats(self, container_names, all_stats):
-        named_stats = {}
-        for container_id, container_stats in all_stats.iteritems():
-            container_name = container_names[container_id]
-
-            named_stats[container_name] = container_stats
-
+    def process_stats(self, all_stats):
         resolved_stats = {}
-        for container_name, container_stats in named_stats.iteritems():
+        for container_name, container_stats in all_stats.iteritems():
             container_stats['cpu_stats']['percentage'] = self.calculate_cpu_percentage(container_stats)
             container_stats['memory_stats']['percentage'] = self.calculate_memory_percentage(container_stats)
 

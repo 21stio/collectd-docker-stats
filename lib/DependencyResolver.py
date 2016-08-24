@@ -5,21 +5,21 @@ from DockerStatsClient import DockerStatsClient
 import docker
 from distutils.version import StrictVersion
 
-class DependencyResolver:
 
+class DependencyResolver:
     resolver = None
 
     @classmethod
-    def get_Resolver(cls):
+    def get_Resolver(cls, socket_url=None, timeout=None):
         if cls.resolver is None:
-            cls.resolver = DependencyResolver('unix://var/run/docker.sock', '1.17', 5)
+            cls.resolver = DependencyResolver(socket_url, timeout)
 
         return cls.resolver
 
-    def __init__(self, socket_url, min_api_version, timeout):
-        self.socket_url = socket_url
-        self.min_api_version = min_api_version
-        self.timeout = timeout
+    def __init__(self, socket_url=None, timeout=None):
+        self.socket_url = socket_url or 'unix://var/run/docker.sock'
+        self.timeout = timeout or 5
+        self.min_api_version = '1.17'
 
         self.dockerClient = None
         self.dictHelper = None

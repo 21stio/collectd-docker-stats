@@ -4,13 +4,14 @@ import time
 
 
 class ContainerStatsStream(threading.Thread):
-    def __init__(self, dockerClient, container_id):
+
+    def __init__(self, dockerClient, container_name):
         threading.Thread.__init__(self)
         self.daemon = True
         self.stop = False
 
         self.running = True
-        self._container_id = container_id
+        self._container_name = container_name
         self._dockerClient = dockerClient
         self._stream = None
         self._stats = None
@@ -22,7 +23,7 @@ class ContainerStatsStream(threading.Thread):
         while self.running:
             try:
                 if not self._stream:
-                    self._stream = self._dockerClient.stats(self._container_id)
+                    self._stream = self._dockerClient.stats(self._container_name)
                 self._stats = self._stream.next()
 
                 failures = 0

@@ -3,6 +3,7 @@ import threading
 
 from lib.DependencyResolver import DependencyResolver
 
+
 class ContainerStatsStreamPoolTest(unittest.TestCase):
 
     @classmethod
@@ -16,27 +17,27 @@ class ContainerStatsStreamPoolTest(unittest.TestCase):
         self.cls = ContainerStatsStreamPoolTest
 
     def test_get_ContainerStatsStream(self):
-        container_id = self.cls.dockerFormatter.get_container_id(self.cls.containers[0])
+        container_name = self.cls.dockerFormatter.get_container_name(self.cls.containers[0])
 
-        stream = self.cls.containerStatsStreamPool.get_ContainerStatsStream(container_id)
+        stream = self.cls.containerStatsStreamPool.get_ContainerStatsStream(container_name)
 
         self.assertTrue(isinstance(stream, threading.Thread))
 
     def test_keep_streams_running(self):
         running_containers = self.cls.dockerFormatter.get_running_containers(self.cls.containers)
 
-        running_container_ids = self.cls.dockerFormatter.get_container_ids(running_containers)
+        running_container_names = self.cls.dockerFormatter.get_container_names(running_containers)
 
         running_streams = []
-        for container_id in running_container_ids:
-            stream = self.cls.containerStatsStreamPool.get_ContainerStatsStream(container_id)
+        for container_name in running_container_names:
+            stream = self.cls.containerStatsStreamPool.get_ContainerStatsStream(container_name)
             running_streams.append(stream)
 
         fake_stream = self.cls.containerStatsStreamPool.get_ContainerStatsStream('abc')
 
         self.assertTrue(fake_stream.running)
 
-        self.cls.containerStatsStreamPool.keep_streams_running(running_container_ids)
+        self.cls.containerStatsStreamPool.keep_streams_running(running_container_names)
 
         self.assertFalse(fake_stream.running)
 

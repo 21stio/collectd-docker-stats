@@ -12,32 +12,6 @@ class DockerFormatterTest(unittest.TestCase):
     def setUp(self):
         self.cls = DockerFormatterTest
 
-    def test_get_container_id(self):
-        container = {
-            'Id': 'cen'
-        }
-
-        container_id = self.cls.dockerFormatter.get_container_id(container)
-
-        self.assertTrue(container_id == 'cen')
-
-    def test_get_container_ids(self):
-        containers = [
-            {
-                'Id': 'cri'
-            },
-            {
-                'Id': 'spr'
-            }
-        ]
-
-        container_ids = self.cls.dockerFormatter.get_container_ids(containers)
-
-        self.assertTrue(type(container_ids) is list)
-        self.assertTrue(len(container_ids) == 2)
-        self.assertTrue('cri' in container_ids)
-        self.assertTrue('spr' in container_ids)
-
     def test_get_container_name(self):
         container = {}
         container['Names'] = ['/test', "/test_abc"]
@@ -175,11 +149,11 @@ class DockerFormatterTest(unittest.TestCase):
     def test_get_container_names(self):
         containers = [
             {
-                'Id' : 'a7b',
+                'Id': 'a7b',
                 'Names': ['/nginx']
             }
         ]
 
         container_names = self.cls.dockerFormatter.get_container_names(containers)
 
-        self.assertTrue(container_names['a7b'] == 'nginx')
+        self.assertTrue('nginx' in container_names)

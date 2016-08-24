@@ -2,9 +2,6 @@ import unittest
 
 from lib.DependencyResolver import DependencyResolver
 
-def print_resolved_stats(stats):
-    for metric in sorted(stats):
-        print '    ' + metric.ljust(60) + str(stats[metric])
 
 class DictHelperTest(unittest.TestCase):
 

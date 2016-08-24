@@ -1,5 +1,6 @@
 import re
 
+
 class DictHelper:
 
     def raw_resolve_dimensions(self, _dict):
@@ -13,7 +14,7 @@ class DictHelper:
 
                 resolved = self.raw_resolve_dimensions(value)
 
-            if resolved != None:
+            if resolved is not None:
                 append_key = None
                 delete_resolved_key = None
 
@@ -69,18 +70,3 @@ class DictHelper:
                 same_value_bag[key] = value[0]
 
         return same_value_bag
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,7 @@
 import time
 import dateutil.parser
 
+
 class Exporter:
 
     skip = ['precpu_stats']
@@ -47,5 +48,3 @@ class Exporter:
 
     def should_skip(self, type):
         return type in ['precpu_stats']
-
-

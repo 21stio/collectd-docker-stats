@@ -6,15 +6,28 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - .:/opt/collectd-docker-stats
-  collectd:
-    extends:
-      service: base
-    command: collectd -f -T -C /opt/collectd-docker-stats/collectd.conf
-  test:
-    extends:
-      service: base
-    command: python -m unittest discover -p '*Test.py' tests
+    command: sleep 60
   style:
     extends:
       service: base
-    command: flake8 .
+    command: flake8 --ignore E501 .
+  test:
+    depends_on:
+      - base
+    extends:
+      service: base
+    command: python -m unittest discover -p '*Test.py' tests
+  unit-test:
+    extends:
+      service: base
+    command: python -m unittest discover -p '*Test.py' tests/unit
+  integration-test_docker:
+    depends_on:
+      - base
+    extends:
+      service: base
+    command: python -m unittest discover -p '*Test.py' tests/integration_docker
+  integration-test_collectd:
+    extends:
+      service: base
+    command: collectd -f -T -C /opt/collectd-docker-stats/collectd.conf

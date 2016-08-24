@@ -15,9 +15,3 @@ class DockerStatsClient:
             stats[containers_id] = stream.get_stats()
 
         return stats
-
-
-
-
-
-
