@@ -9,7 +9,6 @@ class Plugin:
         self.collectd = collectd
 
     def configure(self, conf):
-        print conf
         for node in conf.children:
             try:
                 if node.key == 'SocketUrl':
