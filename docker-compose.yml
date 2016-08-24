@@ -1,0 +1,29 @@
+version: '2'
+services:
+  base:
+    build: .
+    image: collectd-docker-stats:base
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/opt/collectd-docker-stats
+  logstash:
+    image: logstash
+    volumes:
+      - .:/opt/collectd-docker-stats
+    command: logstash -f /opt/collectd-docker-stats/logstash.conf
+    ports:
+      - 25826:25826
+  collectd:
+    extends:
+      service: base
+    command: collectd -f -T -C /opt/collectd-docker-stats/collectd.conf
+  test:
+    extends:
+      service: base
+    container_name: test
+    command: python -m unittest discover -p '*Test.py' tests
+  style:
+    extends:
+      service: base
+    container_name: style
+    command: flake8 .
