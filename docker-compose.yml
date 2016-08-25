@@ -2,10 +2,10 @@ version: '2'
 services:
   base:
     build: .
-    image: collectd-docker-stats:base
+    image: collectd-docker-stats-plugin:base
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - .:/opt/collectd-docker-stats
+      - .:/opt/collectd-docker-stats-plugin
     command: sleep 60
   style:
     extends:
@@ -30,4 +30,4 @@ services:
   integration-test_collectd:
     extends:
       service: base
-    command: collectd -f -T -C /opt/collectd-docker-stats/collectd.conf
+    command: collectd -f -T -C /opt/collectd-docker-stats-plugin/collectd.conf

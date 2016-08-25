@@ -20,7 +20,7 @@ RUN cd /usr/bin \
 
 RUN apk add --no-cache collectd collectd-python collectd-network collectd-dev
 
-WORKDIR /opt/collectd-docker-stats
+WORKDIR /opt/collectd-docker-stats-plugin
 
 COPY . .
 
