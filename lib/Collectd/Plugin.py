@@ -1,5 +1,6 @@
 from lib.DependencyResolver import DependencyResolver
 
+
 class Plugin:
 
     def __init__(self, exporter, collectd):

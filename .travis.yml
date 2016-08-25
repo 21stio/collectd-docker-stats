@@ -8,7 +8,7 @@ env:
   DOCKER_COMPOSE_VERSION: 1.8
 
 script:
-  - docker-compose up style
-  - docker-compose up unit-test
-  - docker-compose up docker-integration-test
-  - docker-compose up collectd-integration-test
+  - docker-compose run style
+  - docker-compose run unit-test
+  - docker-compose run integration-test_docker
+  - docker-compose run integration-test_collectd
