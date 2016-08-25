@@ -14,7 +14,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  docker-compose style
-  docker-compose unit-test
-  docker-compose docker-integration-test
-  docker-compose collectd-integration-test
+  - docker-compose up style
+  - docker-compose up unit-test
+  - docker-compose up docker-integration-test
+  - docker-compose up collectd-integration-test
