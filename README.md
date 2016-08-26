@@ -1,4 +1,4 @@
-# Collectd Docker Stats Plugin
+# Collectd Docker Stats Plugin [![Build Status](https://travis-ci.org/21stio/collectd-docker-stats-plugin.svg?branch=master)](https://travis-ci.org/21stio/collectd-docker-stats-plugin)
 
 Simple and solid collectd plugin that listens for docker stats, fetches and enriches them and sends them to the configured backend of choice
 
