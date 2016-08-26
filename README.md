@@ -9,7 +9,7 @@ The following stats will be reported for each container
 - CPU usage percentage
 - Block IO
 
-Only unique stats will be reported per container, global stats like ```memory.limit``` will be reported together for all containers, to reduce the network payload
+Only unique stats will be reported per container, global stats like ```memory.limit``` will be reported together for all containers to avoid overhead
 
 Each metric is send as a single value to achieve maximum backend compability
 
