@@ -31,3 +31,7 @@ services:
     extends:
       service: base
     command: collectd -f -T -C /opt/collectd-docker-stats-plugin/collectd.conf
+  integration-test_collectd-custom:
+    extends:
+      service: base
+    command: collectd -f -C /opt/collectd-docker-stats-plugin/collectd.conf
