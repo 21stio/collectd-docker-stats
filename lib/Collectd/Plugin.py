@@ -1,4 +1,4 @@
-from lib.DependencyResolver import DependencyResolver
+from lib.Docker.DependencyResolver import DependencyResolver
 
 
 class Plugin:
@@ -9,15 +9,15 @@ class Plugin:
         self.timeout = None
         self.collectd = collectd
 
-    def configure(self, conf):
-        for node in conf.children:
+    def configure(self, configuration):
+        for node in configuration.children:
             try:
                 if node.key == 'SocketUrl':
                     self.socket_url = node.values[0]
                 elif node.key == 'Timeout':
                     self.timeout = int(node.values[0])
             except Exception as e:
-                raise Exception('Failed to load the configuration {0} due to {1}'.format(node.key, e))
+                raise Exception('failed to load the configurationiguration {0} due to {1}'.format(node.key, e))
 
     def init(self):
         self.collectd.register_read(self.read)

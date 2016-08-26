@@ -3,7 +3,8 @@ import ContainerStatsStream
 
 class ContainerStatsStreamPool:
 
-    def __init__(self, dockerClient):
+    def __init__(self, logger, dockerClient):
+        self.logger = logger
         self.dockerClient = dockerClient
         self.container_stats_streams = {}
 
@@ -11,7 +12,7 @@ class ContainerStatsStreamPool:
         if container_name not in self.container_stats_streams:
             self.container_stats_streams[container_name] = ContainerStatsStream.ContainerStatsStream(self.dockerClient, container_name)
 
-            print "started monitoring container: {0}".format(container_name)
+            self.logger.info("started monitoring container: {0}".format(container_name))
 
         return self.container_stats_streams[container_name]
 
@@ -25,4 +26,4 @@ class ContainerStatsStreamPool:
         for container_name in terminated_ids:
             self.container_stats_streams[container_name].running = False
 
-            print "stopped monitoring container: {0}".format(container_name)
+            self.logger.info("stopped monitoring container: {0}".format(container_name))

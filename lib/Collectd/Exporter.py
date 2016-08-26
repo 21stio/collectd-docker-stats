@@ -4,8 +4,6 @@ import dateutil.parser
 
 class Exporter:
 
-    skip = ['precpu_stats']
-
     def __init__(self, collectd):
         self.collectd = collectd
 

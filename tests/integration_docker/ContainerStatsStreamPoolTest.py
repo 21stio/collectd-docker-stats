@@ -1,7 +1,7 @@
-import unittest
 import threading
+import unittest
 
-from lib.DependencyResolver import DependencyResolver
+from lib.Docker.DependencyResolver import DependencyResolver
 
 
 class ContainerStatsStreamPoolTest(unittest.TestCase):

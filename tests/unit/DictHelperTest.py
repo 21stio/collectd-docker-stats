@@ -1,6 +1,6 @@
 import unittest
 
-from lib.DependencyResolver import DependencyResolver
+from lib.Docker.DependencyResolver import DependencyResolver
 
 
 class DictHelperTest(unittest.TestCase):
