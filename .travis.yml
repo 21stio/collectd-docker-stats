@@ -7,7 +7,11 @@ services:
 env:
   DOCKER_COMPOSE_VERSION: 1.8
 
+before_script:
+  - gem install awesome_bot
+
 script:
+  - awesome_bot README.md --allow-redirect
   - docker-compose run style
   - docker-compose run unit-test
   - docker-compose run integration-test_docker

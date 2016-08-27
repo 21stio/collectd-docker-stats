@@ -4,3 +4,4 @@ notes/
 *.pyc
 collectd.json
 stats/
+ab-results-README.md
